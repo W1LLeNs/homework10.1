@@ -1,15 +1,28 @@
 ﻿Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-Console.WriteLine("Введіть Прізвище: ");
-string surname = Console.ReadLine();
-Console.WriteLine("Введіть Ім'я: ");
-string name = Console.ReadLine();
+Console.Write("Введіть ім'я та прізвище через пробіл: ");
+string input = Console.ReadLine();
 
-if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(surname))
+if (!string.IsNullOrEmpty(input))
 {
-    if (char.ToLower(name[0]) == char.ToLower(surname[0]))
-        Console.WriteLine($"Прізвище починається на ту ж літеру ({name[0]}), що і ім’я");
+    string[] parts = input.Split(' ');
 
-    else 
-        Console.WriteLine("Прізвище не починається на ту ж літеру, що і ім’я!");
+    if (parts.Length >= 2)
+    {
+        string firstName = parts[0];
+        string lastName = parts[1];
+
+        if (char.ToLower(firstName[0]) == char.ToLower(lastName[0]))
+        {
+            Console.WriteLine($"Перша літера ({firstName[0]}) однакова!");
+        }
+        else
+        {
+            Console.WriteLine($"Перші літери ({firstName[0]}) та ({lastName[0]}) різні!");
+        }
+    }
+}
+else
+{
+    Console.WriteLine("Рядок не може бути порожнім!");
 }
